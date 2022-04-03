@@ -1,0 +1,46 @@
+{
+    "private": true,
+    "scripts": {
+        "dev": "npm run development",
+        "development": "mix",
+        "watch": "mix watch",
+        "watch-poll": "mix watch -- --watch-options-poll=1000",
+        "hot": "mix watch --hot",
+        "prod": "npm run production",
+        "production": "mix --production"
+    },
+    "devDependencies": {
+        "@nuxtjs/vuetify": "^1.12.3",
+        "autoprefixer": "^10.3.4",
+        "axios": "^0.21",
+        "bootstrap": "^4.6.0",
+        "deepmerge": "^4.2.2",
+        "jquery": "^3.6",
+        "laravel-mix": "^6.0.6",
+        "lodash": "^4.17.19",
+        "popper.js": "^1.16.1",
+        "postcss": "^8.3.6",
+        "postcss-import": "^14.0.2",
+        "resolve-url-loader": "^3.1.2",
+        "sass": "^1.32.13",
+        "sass-loader": "^11.1.1",
+        "tailwindcss": "^2.2.15",
+        "vue": "^2.6.12",
+        "vue-loader": "^15.9.8",
+        "vue-template-compiler": "^2.6.12"
+    },
+    "dependencies": {
+        "@fortawesome/fontawesome-free": "^5.15.4",
+        "@headlessui/vue": "^1.4.1",
+        "daisyui": "^1.14.0",
+        "moment": "^2.29.1",
+        "vue-js-modal": "^2.0.1",
+        "vue-material-design-icons": "^4.12.1",
+        "vue-multiselect": "^2.1.6",
+        "vue-router": "^3.5.3",
+        "vue-select": "^3.16.0",
+        "vue-star-rating": "^1.7.0",
+        "vue-sweetalert2": "^5.0.2",
+        "vuetify": "^2.6.3"
+    }
+}
