@@ -66,7 +66,7 @@ export default {
         submit(){
             //if role is passed to modal update it
             if (!this.$attrs.new){
-                axios.post('/api/updateRole',{name:this.role.name,permission_ids:this.checkedPermissions}).then(res=>{
+                axios.post('/api/updateRole',{name:this.role.name,permission_ids:this.checkedPermissions,id:this.role.id}).then(res=>{
 
                     this.$swal({
                     title: '<strong>You updated a role successfully</strong>',

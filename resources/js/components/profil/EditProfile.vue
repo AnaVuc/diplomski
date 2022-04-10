@@ -108,9 +108,13 @@ export default {
                 confirm_password:null,
                 role_id:null
             }
+        }else if(this.$attrs.edit){
+            this.user = this.$attrs.user;
+            this.user.password=null;
+            this.user.confirm_password=null;
         }
         else{
-            this.user=this.$attrs.user;
+            this.user=this.$userId;
             this.user.password=null;
             this.user.confirm_password=null;
         }
@@ -133,7 +137,7 @@ export default {
             if (!this.$attrs.new){
                 axios.post('/api/updateUser',{password:this.user.password,confirm_password:this.user.confirm_password,
                     email:this.user.email,firstName:this.user.firstName,lastName:this.user.lastName,
-                    username:this.user.username,role_id:this.user.role_id}).then(res=>{
+                    username:this.user.username,role_id:this.user.role_id,id:this.user.id}).then(res=>{
 
                     this.$swal({
                     title: '<strong>You updated a profile successfully</strong>',

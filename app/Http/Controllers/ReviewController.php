@@ -33,11 +33,18 @@ class ReviewController extends Controller
 
 
         if (request()->like){
-            $likeCreate=Like::create([
-                'idUser'=>request()->idUser,
-                'idFilm'=>request()->idFilm
-            ]);
-            $review->like()->save($likeCreate);
+            $like = Like::where('idFilm',request()->idFilm)->where('idUser',request()->idUser)->first();
+            if ($like){
+                $like->review_id = $review->id;
+                $like->fresh();
+            }
+            else{
+                $likeCreate=Like::create([
+                    'idUser'=>request()->idUser,
+                    'idFilm'=>request()->idFilm
+                ]);
+                $review->like()->save($likeCreate);
+            }
         }
 
         if (request()->rating){
@@ -114,7 +121,9 @@ class ReviewController extends Controller
 
     public function delete(){
         // dd(request()->idUser,request()->idFilm);
-       return Review::where('idUser',request()->idUser)->where('idFilm',request()->idFilm)->delete();
+        $r= Review::where('idUser',request()->idUser)->where('idFilm',request()->idFilm)->first();
+        //radi on cascade delete pa brise review_id u watched i liked
+        $r->delete();
 
     }
 

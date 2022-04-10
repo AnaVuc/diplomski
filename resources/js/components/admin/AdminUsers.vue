@@ -167,7 +167,7 @@ export default {
                             });
                             this.$swal(
                                 'Deleted!',
-                                'Review removed.',
+                                'User removed.',
                                 'success'
                             )
                         }).catch((res) => {
@@ -184,6 +184,7 @@ export default {
         openEditModal(user){
             this.$modal.show(EditProfile, {
                 user: user,
+                edit:true,
                 editRole:true,
                 }, {
                 name:'EditProfile',

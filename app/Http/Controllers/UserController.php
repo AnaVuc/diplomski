@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Hash;
 class UserController extends Controller
 {
     public function updateUser(User $u){
-        $u=User::where('username',request()->username)->first();
+        $u=User::where('id',request()->id)->first();
         $user= request()->validate([
             'password'=>request()->password!=null?'min:8 | sometimes | required': '',
             'confirm_password'=>'same:password',
@@ -21,6 +21,7 @@ class UserController extends Controller
             'username'=>'required',
             'role_id'=>'required',
         ]);
+        // dd(request()->all);
         $u->update(request()->has('password') ?request()->all() : request()->except(['password']));
         $u->fresh();
 
@@ -73,7 +74,7 @@ class UserController extends Controller
         $validator=$request->validate([
             'name'=>'required',
         ]);
-        $role=Role::where('name',request()->name)->first();
+        $role=Role::where('id',request()->id)->first();
         $role->name=(request()->name);
         $role->save();
         $role->permissions()->sync(request()->permission_ids);

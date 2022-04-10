@@ -7,7 +7,11 @@
             <div class="font-light">
                 <span class="italic">Reviewed on:</span> <span> {{review.created_at | dateFilter}}</span>
             </div>
-            <p class="pt-2 text-lg">{{review.reviewText}}</p>
+            <div class="flex justify-between w-full">
+                <p class=" pt-2 text-lg">{{review.reviewText}}</p>
+                <p class=" text-red-500 my-auto italic" v-if="review.approved_at==null"> * Waiting for approval</p>
+
+            </div>
 
         </div>
     </div>

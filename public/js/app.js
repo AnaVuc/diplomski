@@ -2519,7 +2519,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       rating: null,
       myReview: null,
       reviews: null,
-      numOfReviews: 5
+      numOfReviews: 5,
+      user: null
     };
   },
   created: function created() {
@@ -2543,6 +2544,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     window.Event.$on('film-id', function (id) {
       _this2.id = id;
     });
+    this.user = this.$userId;
     this.id = this.$route.params.id;
     this.getFilm();
     this.getReviews();
@@ -2631,6 +2633,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
         idFilm: this.id
       }).then(function (res) {
         _this6.averageRating = res.data;
+        _this6.averageRating = Math.round(_this6.averageRating * 100) / 100;
       });
     },
     filmStats: function filmStats() {
@@ -2653,6 +2656,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           _this7.averageRating = '/';
         } else {
           _this7.averageRating = res.data;
+          _this7.averageRating = Math.round(_this7.averageRating * 100) / 100;
         }
 
         console.log(res.data.length);
@@ -2705,8 +2709,6 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       if (param == "heart") {
         this.likeFilm();
         this.heart = !this.heart;
-        if (!this.watch) this.watchFilm();
-        this.watch = true;
       }
 
       if (param == "watch") {
@@ -2765,7 +2767,9 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       this.$modal.show(_components_delovi_ReviewModal_vue__WEBPACK_IMPORTED_MODULE_1__["default"], {
         film: this.film,
         id: this.id,
-        review: this.myReview
+        review: this.myReview,
+        star: this.rating,
+        like: this.heart
       }, {
         name: 'ReviewModal',
         width: '50%',
@@ -2872,7 +2876,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     };
   },
   mounted: function mounted() {
-    this.getPopularMovies(); // this.getTopRatedMovies();
+    this.getPopularMovies();
+    this.getTopRatedMovies();
   },
   methods: {
     goToFilm: function goToFilm(id) {
@@ -3322,7 +3327,7 @@ __webpack_require__.r(__webpack_exports__);
         name: 'Roles',
         component: 'AdminRoles'
       }],
-      CurrentView: 'AdminRoles'
+      CurrentView: 'AdminUsers'
     };
   }
 });
@@ -3681,7 +3686,7 @@ __webpack_require__.r(__webpack_exports__);
               return item.id != id;
             });
 
-            _this5.$swal('Deleted!', 'Review removed.', 'success');
+            _this5.$swal('Deleted!', 'User removed.', 'success');
           })["catch"](function (res) {
             _this5.$swal('Ooops!', 'Something went wrong please try again.', 'error');
           });
@@ -3691,6 +3696,7 @@ __webpack_require__.r(__webpack_exports__);
     openEditModal: function openEditModal(user) {
       this.$modal.show(_profil_EditProfile_vue__WEBPACK_IMPORTED_MODULE_0__["default"], {
         user: user,
+        edit: true,
         editRole: true
       }, {
         name: 'EditProfile',
@@ -3818,7 +3824,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
       if (!this.$attrs["new"]) {
         axios.post('/api/updateRole', {
           name: this.role.name,
-          permission_ids: this.checkedPermissions
+          permission_ids: this.checkedPermissions,
+          id: this.role.id
         }).then(function (res) {
           _this2.$swal({
             title: '<strong>You updated a role successfully</strong>',
@@ -3991,6 +3998,8 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.check();
     }
 
+    if (this.$attrs.star) this.rating = this.$attrs.star;
+    if (this.$attrs.like) this.heart = this.$attrs.like;
     this.logged_user = this.$userId;
   },
   methods: {
@@ -4058,7 +4067,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       axios.post('/api/deleteReview', {
         idFilm: this.id,
-        idUser: this.$userId.id
+        idUser: this.$userId.username
       }).then(function (res) {
         _this3.hide(); //TODO mozda ne mora da bude false, ako su van review-a ocenili ili lajkovali, proveri na kraju
 
@@ -4275,8 +4284,12 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
         confirm_password: null,
         role_id: null
       };
-    } else {
+    } else if (this.$attrs.edit) {
       this.user = this.$attrs.user;
+      this.user.password = null;
+      this.user.confirm_password = null;
+    } else {
+      this.user = this.$userId;
       this.user.password = null;
       this.user.confirm_password = null;
     }
@@ -4310,7 +4323,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
           firstName: this.user.firstName,
           lastName: this.user.lastName,
           username: this.user.username,
-          role_id: this.user.role_id
+          role_id: this.user.role_id,
+          id: this.user.id
         }).then(function (res) {
           _this2.$swal({
             title: '<strong>You updated a profile successfully</strong>',
@@ -4449,6 +4463,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   data: function data() {
     return {
@@ -4491,7 +4509,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _delovi_MovieCard_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../delovi/MovieCard.vue */ "./resources/js/components/delovi/MovieCard.vue");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _delovi_MovieCard_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../delovi/MovieCard.vue */ "./resources/js/components/delovi/MovieCard.vue");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 //
 //
 //
@@ -4534,7 +4560,7 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
-    MovieCard: _delovi_MovieCard_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
+    MovieCard: _delovi_MovieCard_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   data: function data() {
     return {
@@ -4555,43 +4581,38 @@ __webpack_require__.r(__webpack_exports__);
         user: this.$userId.username
       }).then(function (res) {
         _this.watched = res.data;
-
-        _this.getIds();
-
-        _this.ids.forEach(function (id) {
+        res.data.forEach(function (id) {
           _this.getMoviesWithId(id);
         });
       });
     },
-    getIds: function getIds() {
+    getMoviesWithId: function getMoviesWithId(id) {
       var _this2 = this;
 
-      this.watched.forEach(function (film) {
-        _this2.ids.push({
-          id: film.idFilm,
-          date: film.created_at
-        });
-      });
-    },
-    getMoviesWithId: function getMoviesWithId(id) {
-      var _this3 = this;
+      return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+          while (1) {
+            switch (_context.prev = _context.next) {
+              case 0:
+                _context.next = 2;
+                return axios.get('https://imdb-api.com/en/API/Title/pk_3i6onjtnv0nkvost7/' + id.idFilm).then(function (res) {
+                  res.data.date_watched = id.created_at;
 
-      axios.get('https://imdb-api.com/en/API/Title/pk_3i6onjtnv0nkvost7/' + id.id).then(function (res) {
-        res.data.date_watched = id.date;
+                  _this2.films.push(res.data);
+                });
 
-        _this3.films.push(res.data);
-      });
-    },
-    sortingFilmsByDateWatched: function sortingFilmsByDateWatched(a, b) {
-      console.log('aaa');
+              case 2:
+                _this2.films.sort(function (left, right) {
+                  return moment.utc(right.date_watched).diff(moment.utc(left.date_watched));
+                });
 
-      if (a.date_watched > b.date_watched) {
-        console.log(a.date_watched > b.date_watched);
-        return 1;
-      } else {
-        console.log(a.date_watched, b.date_watched);
-        return -1;
-      }
+              case 3:
+              case "end":
+                return _context.stop();
+            }
+          }
+        }, _callee);
+      }))();
     }
   },
   filters: {
@@ -66164,14 +66185,16 @@ var render = function() {
                 }),
                 _vm._v(" "),
                 _c("div", { staticClass: "flex justify-start my-4" }, [
-                  _c(
-                    "div",
-                    {
-                      staticClass: "btn bg-blue-300 hover:bg-blue-400",
-                      on: { click: _vm.moreReviews }
-                    },
-                    [_vm._v("View more")]
-                  )
+                  _vm.reviews.length > 5
+                    ? _c(
+                        "div",
+                        {
+                          staticClass: "btn bg-blue-300 hover:bg-blue-400",
+                          on: { click: _vm.moreReviews }
+                        },
+                        [_vm._v("View more")]
+                      )
+                    : _vm._e()
                 ])
               ],
               2
@@ -68609,8 +68632,16 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _c("p", { staticClass: "pt-2 text-lg" }, [
-            _vm._v(_vm._s(review.reviewText))
+          _c("div", { staticClass: "flex justify-between w-full" }, [
+            _c("p", { staticClass: " pt-2 text-lg" }, [
+              _vm._v(_vm._s(review.reviewText))
+            ]),
+            _vm._v(" "),
+            review.approved_at == null
+              ? _c("p", { staticClass: " text-red-500 my-auto italic" }, [
+                  _vm._v(" * Waiting for approval")
+                ])
+              : _vm._e()
           ])
         ]
       )

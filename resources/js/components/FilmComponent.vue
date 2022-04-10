@@ -102,7 +102,7 @@
                     </div>
                 </div>
                 <div class="flex justify-start my-4">
-                    <div class="btn bg-blue-300 hover:bg-blue-400" @click="moreReviews">View more</div>
+                    <div class="btn bg-blue-300 hover:bg-blue-400" @click="moreReviews" v-if="reviews.length>5">View more</div>
                 </div>
             </div>
             <div v-else>
@@ -142,7 +142,8 @@ export default {
             rating:null,
             myReview:null,
             reviews:null,
-            numOfReviews:5
+            numOfReviews:5,
+            user:null
         };
     },
     created(){
@@ -161,6 +162,7 @@ export default {
         window.Event.$on('film-id',id=>{
             this.id=id;
         });
+        this.user=this.$userId;
 
         this.id=this.$route.params.id;
         this.getFilm();
@@ -210,6 +212,7 @@ export default {
         updateAverageRating(){
             axios.post('/api/calculateFilmRating',{idFilm:this.id}).then(res=>{
                 this.averageRating=res.data;
+                this.averageRating=Math.round(this.averageRating * 100) / 100
             });
         },
         filmStats(){
@@ -226,6 +229,8 @@ export default {
                     this.averageRating='/'
                 }else{
                     this.averageRating=res.data;
+                    this.averageRating=Math.round(this.averageRating * 100) / 100
+
                 }
                 console.log(res.data.length)
             });
@@ -268,9 +273,6 @@ export default {
             if (param=="heart"){
                 this.likeFilm();
                 this.heart= !this.heart;
-                if (!this.watch)
-                    this.watchFilm();
-                    this.watch= true;
 
             }
             if (param=="watch"){
@@ -328,7 +330,9 @@ export default {
             this.$modal.show(ReviewModal, {
                 film: this.film,
                 id:this.id,
-                review:this.myReview
+                review:this.myReview,
+                star:this.rating,
+                like:this.heart
                 }, {
                 name:'ReviewModal',
                 width:'50%',

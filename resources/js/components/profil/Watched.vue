@@ -58,33 +58,20 @@ export default {
          getMyWatchedFilms(){
             axios.post('/api/myWatchedFilms',{user: this.$userId.username}).then(res=>{
                 this.watched=res.data;
-                this.getIds();
-                this.ids.forEach(id => {
+                res.data.forEach(id => {
                     this.getMoviesWithId(id);
                 });
             });
         },
-        getIds(){
-            this.watched.forEach(film=>{
-                this.ids.push({id:film.idFilm,date:film.created_at});
-            })
-        },
-         getMoviesWithId(id){
-            axios.get('https://imdb-api.com/en/API/Title/pk_3i6onjtnv0nkvost7/'+id.id).then(res=>{
-                res.data.date_watched=id.date;
+        async getMoviesWithId(id){
+            await axios.get('https://imdb-api.com/en/API/Title/pk_3i6onjtnv0nkvost7/'+id.idFilm).then(res=>{
+                res.data.date_watched=id.created_at;
                 this.films.push(res.data)
             })
-        },
-        sortingFilmsByDateWatched(a,b){
-            console.log('aaa')
-            if (a.date_watched>b.date_watched){
-                console.log(a.date_watched>b.date_watched)
-                return 1;
-            }
-            else {
-                console.log(a.date_watched, b.date_watched)
-                return -1;
-            }
+            this.films.sort(function (left, right) {
+                return moment.utc(right.date_watched).diff(moment.utc(left.date_watched))
+            });
+
         }
     },
     filters:{

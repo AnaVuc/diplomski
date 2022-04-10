@@ -69,7 +69,7 @@ class FilmController extends Controller
 
     public function myWatchedFilms(){
         $user=request()->user;
-        return Watch::where('idUser',$user)->orderBy('created_at', 'desc')->get();
+        return Watch::select('idFilm','created_at')->where('idUser',$user)->orderBy('created_at', 'desc')->get();
     }
 
 
@@ -138,7 +138,7 @@ class FilmController extends Controller
     }
 
     public function topRated(){
-        return Rating::orderBy('rating','desc')->limit(5)->pluck('idFilm');
+        return Rating::groupBy('idFilm')->orderBy('rating','desc')->limit(5)->pluck('idFilm');
     }
 
     public function statsForFilms(){

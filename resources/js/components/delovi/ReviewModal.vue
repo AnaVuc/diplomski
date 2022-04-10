@@ -50,6 +50,8 @@ export default {
             this.review=this.$attrs.review;
             this.check();
         }
+        if (this.$attrs.star) this.rating = this.$attrs.star
+        if (this.$attrs.like) this.heart = this.$attrs.like
         this.logged_user=this.$userId;
     },
     methods:{
@@ -94,7 +96,7 @@ export default {
         },
         //TODO
         deleteReview(){
-            axios.post('/api/deleteReview',{idFilm:this.id,idUser:this.$userId.id}).then(res=>{
+            axios.post('/api/deleteReview',{idFilm:this.id,idUser:this.$userId.username}).then(res=>{
                 this.hide();
                 //TODO mozda ne mora da bude false, ako su van review-a ocenili ili lajkovali, proveri na kraju
                 window.Event.$emit('changed-like',false);

@@ -20,7 +20,7 @@ export default {
                 {name:'Users',component:'AdminUsers'},
                 {name:'Roles',component:'AdminRoles'},
             ],
-            CurrentView: 'AdminRoles',
+            CurrentView: 'AdminUsers',
         }
     }
 }
