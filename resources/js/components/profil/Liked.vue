@@ -4,7 +4,7 @@
             <div class="grid grid-flow-row grid-flow-col gap-4">
                 <div v-for="movie in movies" :key="movie.id">
                     <router-link :to="{ path:`film/${movie.id}`}">
-                        <div>
+                        <div class="justify-center">
                             <img :src="movie.image" class="h-80 object-contain  rounded-md hover:border-blue-300">
                             <span class="pr-2 text-lg underline flex-wrap">{{movie.fullTitle}}</span>
                         </div>
@@ -30,7 +30,7 @@ export default {
             axios.post('/api/myLikedFilms',{user:this.$userId.username}).then(res=>{
                 this.ids=res.data;
                 this.ids.forEach(id => {
-                    axios.get('https://imdb-api.com/en/API/Title/pk_3i6onjtnv0nkvost7/'+id).then(res=>{
+                    axios.get('https://imdb-api.com/en/API/Title/k_aqki26bs/'+id).then(res=>{
                         this.movies.push(res.data)
                     })
 

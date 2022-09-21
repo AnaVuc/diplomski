@@ -308,7 +308,7 @@ export default {
             }
         },
         getFilm() {
-            axios.get("https://imdb-api.com/en/API/Title/pk_3i6onjtnv0nkvost7/"+this.id)
+            axios.get("https://imdb-api.com/en/API/Title/k_aqki26bs/"+this.id)
                 .then(response => {
                     this.film.title=response.data.title;
                     this.film.year=response.data.year;

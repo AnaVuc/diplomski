@@ -111,12 +111,12 @@ export default {
             }
         },
         logout(){
-            axios.post('http://localhost/logout').then(response => {
+            axios.post('http://localhost:8080/logout').then(response => {
                 location.reload();
             })
-            .catch(error => {
-                console.log(error);
-            });
+            // .catch(error => {
+            //     console.log(error);
+            // });
         }
     }
 };

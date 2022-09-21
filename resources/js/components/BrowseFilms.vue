@@ -57,7 +57,7 @@
         <div class="flex px-10" v-if="loaded">
             <div class="grid grid-cols-5  gap-3">
                 <div v-for="film in films" :key="film.id">
-                    <router-link :to="{ path: `film/${film.id}` }">
+                    <router-link :to="{ path: `/film/${film.id}` }">
                         <movie-card
                             :size="'w-60 h-80'"
                             :image="film.image"
@@ -154,7 +154,7 @@ export default {
                 { text: "Popularity", value: "moviemeter,asc" }
             ],
             advancedSearchUrl:
-                "https://imdb-api.com/API/AdvancedSearch/pk_3i6onjtnv0nkvost7?title_type=feature",
+                "https://imdb-api.com/API/AdvancedSearch/k_aqki26bs7?title_type=feature",
             isTyping: false
         };
     },
@@ -183,7 +183,7 @@ export default {
             console.log('searchFilm');
             axios
                 .get(
-                    "https://imdb-api.com/en/API/SearchMovie/pk_3i6onjtnv0nkvost7/" +
+                    "https://imdb-api.com/en/API/SearchMovie/k_aqki26bs/" +
                         this.search
                 )
                 .then(res => {
@@ -194,7 +194,7 @@ export default {
         },
         makeUrl() {
             this.advancedSearchUrl =
-                "https://imdb-api.com/API/AdvancedSearch/pk_3i6onjtnv0nkvost7?title_type=feature&count=250";
+                "https://imdb-api.com/API/AdvancedSearch/k_aqki26bs?title_type=feature&count=250";
             this.concatForURL("genres", this.genre);
             this.concatForURL("user_rating", this.rating);
             this.concatForURL("title", this.search);

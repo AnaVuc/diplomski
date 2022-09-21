@@ -17,10 +17,10 @@ class CreateLikesTable extends Migration
             $table->id();
             $table->string('idFilm');
             $table->string('idUser');
+            $table->foreign('idUser')->references('username')->on('users');
+
             $table->unsignedBigInteger('review_id')->nullable();
-
             $table->timestamps();
-
             $table->foreign('review_id')->references('id')->on('reviews')
                 ->onDelete('cascade');
         });

@@ -34,7 +34,6 @@ export default {
     props:['image','title','year','watched','liked','rating','size','noStats'],
     methods:{
         mounted(){
-            //nadji sliku
         }
     }
 

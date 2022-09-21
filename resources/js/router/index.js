@@ -1,7 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-// import Vuetify from 'vuetify'
-// import 'vuetify/dist/vuetify.min.css'
 
 import FilmComponent from '../components/FilmComponent.vue';
 import IndexComponent from '../components/IndexComponent.vue';
@@ -11,11 +9,6 @@ import ProfileComponent from '../components/ProfileComponent.vue';
 import AdminComponent from '../components/admin/AdminComponent.vue'
 
 Vue.use(Router)
-    // Vue.use(Vuetify)
-
-// const opts = {}
-
-// export default new Vuetify(opts)
 
 export default new Router({
     mode: 'history',
@@ -68,6 +61,5 @@ export default new Router({
                 }
             }
         },
-        // { path: '*', redirect: '/' }
     ]
 });

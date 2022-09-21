@@ -64,7 +64,7 @@ export default {
             });
         },
         async getMoviesWithId(id){
-            await axios.get('https://imdb-api.com/en/API/Title/pk_3i6onjtnv0nkvost7/'+id.idFilm).then(res=>{
+            await axios.get('https://imdb-api.com/en/API/Title/k_aqki26bs/'+id.idFilm).then(res=>{
                 res.data.date_watched=id.created_at;
                 this.films.push(res.data)
             })

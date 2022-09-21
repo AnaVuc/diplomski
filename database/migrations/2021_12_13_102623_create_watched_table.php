@@ -17,6 +17,8 @@ class CreateWatchedTable extends Migration
             $table->id();
             $table->string('idFilm');
             $table->string('idUser');
+            $table->foreign('idUser')->references('username')->on('users');
+
             $table->timestamps();
         });
     }

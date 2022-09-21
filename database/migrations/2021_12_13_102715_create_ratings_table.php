@@ -17,6 +17,7 @@ class CreateRatingsTable extends Migration
             $table->id();
             $table->string('idFilm');
             $table->string('idUser');
+            $table->foreign('idUser')->references('username')->on('users');
             $table->float('rating');
             $table->unsignedBigInteger('review_id')->nullable();
 

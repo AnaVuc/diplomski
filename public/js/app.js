@@ -2283,7 +2283,7 @@ __webpack_require__.r(__webpack_exports__);
         text: "Popularity",
         value: "moviemeter,asc"
       }],
-      advancedSearchUrl: "https://imdb-api.com/API/AdvancedSearch/pk_3i6onjtnv0nkvost7?title_type=feature",
+      advancedSearchUrl: "https://imdb-api.com/API/AdvancedSearch/k_aqki26bs7?title_type=feature",
       isTyping: false
     };
   },
@@ -2313,7 +2313,7 @@ __webpack_require__.r(__webpack_exports__);
       var _this2 = this;
 
       console.log('searchFilm');
-      axios.get("https://imdb-api.com/en/API/SearchMovie/pk_3i6onjtnv0nkvost7/" + this.search).then(function (res) {
+      axios.get("https://imdb-api.com/en/API/SearchMovie/k_aqki26bs/" + this.search).then(function (res) {
         _this2.allFilms = res.data.results;
 
         _this2.getFilmsForPage();
@@ -2322,7 +2322,7 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     makeUrl: function makeUrl() {
-      this.advancedSearchUrl = "https://imdb-api.com/API/AdvancedSearch/pk_3i6onjtnv0nkvost7?title_type=feature&count=250";
+      this.advancedSearchUrl = "https://imdb-api.com/API/AdvancedSearch/k_aqki26bs?title_type=feature&count=250";
       this.concatForURL("genres", this.genre);
       this.concatForURL("user_rating", this.rating);
       this.concatForURL("title", this.search);
@@ -2748,7 +2748,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
     getFilm: function getFilm() {
       var _this9 = this;
 
-      axios.get("https://imdb-api.com/en/API/Title/pk_3i6onjtnv0nkvost7/" + this.id).then(function (response) {
+      axios.get("https://imdb-api.com/en/API/Title/k_aqki26bs/" + this.id).then(function (response) {
         _this9.film.title = response.data.title;
         _this9.film.year = response.data.year;
         _this9.film.image = response.data.image;
@@ -2892,7 +2892,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios.get("https://imdb-api.com/en/API/MostPopularMovies/pk_3i6onjtnv0nkvost7").then(function (response) {
+                return axios.get("https://imdb-api.com/en/API/MostPopularMovies/k_aqki26bs").then(function (response) {
                   _this.popularMovies = response.data.items.splice(0, 5);
                 })["catch"](function (error) {
                   console.error(error);
@@ -2925,7 +2925,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 2:
                 _this2.topRatedIds.forEach(function (id) {
-                  axios.get('https://imdb-api.com/en/API/Title/pk_3i6onjtnv0nkvost7/' + id).then(function (res) {
+                  axios.get('https://imdb-api.com/en/API/Title/k_aqki26bs/' + id).then(function (res) {
                     _this2.topRatedMovies.push(res.data);
                   });
                 });
@@ -3178,11 +3178,11 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     logout: function logout() {
-      axios.post('http://localhost/logout').then(function (response) {
+      axios.post('http://localhost:8080/logout').then(function (response) {
         location.reload();
-      })["catch"](function (error) {
-        console.log(error);
-      });
+      }); // .catch(error => {
+      //     console.log(error);
+      // });
     }
   }
 });
@@ -3924,8 +3924,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: ['image', 'title', 'year', 'watched', 'liked', 'rating', 'size', 'noStats'],
   methods: {
-    mounted: function mounted() {//nadji sliku
-    }
+    mounted: function mounted() {}
   }
 });
 
@@ -4427,7 +4426,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.ids = res.data;
 
         _this.ids.forEach(function (id) {
-          axios.get('https://imdb-api.com/en/API/Title/pk_3i6onjtnv0nkvost7/' + id).then(function (res) {
+          axios.get('https://imdb-api.com/en/API/Title/k_aqki26bs/' + id).then(function (res) {
             _this.movies.push(res.data);
           });
         });
@@ -4595,7 +4594,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
             switch (_context.prev = _context.next) {
               case 0:
                 _context.next = 2;
-                return axios.get('https://imdb-api.com/en/API/Title/pk_3i6onjtnv0nkvost7/' + id.idFilm).then(function (res) {
+                return axios.get('https://imdb-api.com/en/API/Title/k_aqki26bs/' + id.idFilm).then(function (res) {
                   res.data.date_watched = id.created_at;
 
                   _this2.films.push(res.data);
@@ -9351,7 +9350,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".style-chooser .vs__search::-moz-placeholder {\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  appearance: none;\n  background: rgb(156 163 175);\n  border: none;\n  color: #394066;\n  text-transform: lowercase;\n  font-variant: small-caps;\n  width: auto;\n  padding: 0.25rem;\n  line-height: 1.25;\n  min-width: 200px;\n}\n.style-chooser .vs__search:-ms-input-placeholder {\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  appearance: none;\n  background: rgb(156 163 175);\n  border: none;\n  color: #394066;\n  text-transform: lowercase;\n  font-variant: small-caps;\n  width: auto;\n  padding: 0.25rem;\n  line-height: 1.25;\n  min-width: 200px;\n}\n.style-chooser .vs__search::placeholder,\n.style-chooser .vs__dropdown-toggle,\n.style-chooser .vs__dropdown-menu {\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  appearance: none;\n  background: rgb(156 163 175);\n  border: none;\n  color: #394066;\n  text-transform: lowercase;\n  font-variant: small-caps;\n  width: auto;\n  padding: 0.25rem;\n  line-height: 1.25;\n  min-width: 200px;\n}\n\n/* .style-chooser .vs__clear,\n.style-chooser .vs__open-indicator {\n  fill: #394066;\n  width: 100%;\n\n} */\n.form-group {\n  width: 50%;\n  padding: 1rem;\n}\n.form-group-select {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  appearance: none;\n  /* border-width: 1px; */\n  border-radius: 0.25rem;\n  width: 100%;\n  padding: 0.25rem;\n  --text-opacity: 1;\n  color: #4a5568;\n  color: rgba(74, 85, 104, var(--text-opacity));\n  line-height: 1.25;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".style-chooser .vs__search::-moz-placeholder {\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  appearance: none;\n  background: rgb(156 163 175);\n  border: none;\n  color: #394066;\n  text-transform: lowercase;\n  font-variant: small-caps;\n  width: auto;\n  padding: 0.25rem;\n  line-height: 1.25;\n  min-width: 200px;\n}\n.style-chooser .vs__search:-ms-input-placeholder {\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  appearance: none;\n  background: rgb(156 163 175);\n  border: none;\n  color: #394066;\n  text-transform: lowercase;\n  font-variant: small-caps;\n  width: auto;\n  padding: 0.25rem;\n  line-height: 1.25;\n  min-width: 200px;\n}\n.style-chooser .vs__search::placeholder,\r\n.style-chooser .vs__dropdown-toggle,\r\n.style-chooser .vs__dropdown-menu {\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  appearance: none;\n  background: rgb(156 163 175);\n  border: none;\n  color: #394066;\n  text-transform: lowercase;\n  font-variant: small-caps;\n  width: auto;\n  padding: 0.25rem;\n  line-height: 1.25;\n  min-width: 200px;\n}\n\n/* .style-chooser .vs__clear,\r\n.style-chooser .vs__open-indicator {\r\n  fill: #394066;\r\n  width: 100%;\r\n\r\n} */\n.form-group {\n  width: 50%;\n  padding: 1rem;\n}\n.form-group-select {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  appearance: none;\n  /* border-width: 1px; */\n  border-radius: 0.25rem;\n  width: 100%;\n  padding: 0.25rem;\n  --text-opacity: 1;\n  color: #4a5568;\n  color: rgba(74, 85, 104, var(--text-opacity));\n  line-height: 1.25;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -9375,7 +9374,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".tooltip[data-v-4281c2fe] {\n  position: relative;\n  display: flex;\n  opacity: 1;\n}\n.tooltip .tooltiptext[data-v-4281c2fe] {\n  visibility: hidden;\n  width: -webkit-max-content;\n  width: -moz-max-content;\n  width: max-content;\n  background-color: rgb(59, 59, 59);\n  color: #fff;\n  border-radius: 6px;\n  padding: 3px 10px;\n  position: absolute;\n  z-index: 3 !important;\n  bottom: 95%;\n  margin-left: 10px;\n  font-weight: normal;\n  opacity: 1;\n  transition: opacity 0.5s;\n}\n.tooltip:hover .tooltiptext[data-v-4281c2fe] {\n  visibility: visible;\n  opacity: 1;\n}\n\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".tooltip[data-v-4281c2fe] {\n  position: relative;\n  display: flex;\n  opacity: 1;\n}\n.tooltip .tooltiptext[data-v-4281c2fe] {\n  visibility: hidden;\n  width: -webkit-max-content;\n  width: -moz-max-content;\n  width: max-content;\n  background-color: rgb(59, 59, 59);\n  color: #fff;\n  border-radius: 6px;\n  padding: 3px 10px;\n  position: absolute;\n  z-index: 3 !important;\n  bottom: 95%;\n  margin-left: 10px;\n  font-weight: normal;\n  opacity: 1;\n  transition: opacity 0.5s;\n}\n.tooltip:hover .tooltiptext[data-v-4281c2fe] {\n  visibility: visible;\n  opacity: 1;\n}\r\n\r\n\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -9399,7 +9398,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".coverImage{\n  background-image: url('/images/cover.jpg');\n  background-size: contain;\n  background-attachment: fixed;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".coverImage{\n  background-image: url('/images/cover.jpg');\n  background-size: contain;\n  background-attachment: fixed;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -9423,7 +9422,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".credit-application-container {\n  margin-top: 2.5rem;\n}\n.credit-application-tab-content {\n  width: 100%;\n  padding-top: 0.5rem;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".credit-application-container {\n  margin-top: 2.5rem;\n}\n.credit-application-tab-content {\n  width: 100%;\n  padding-top: 0.5rem;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -9447,7 +9446,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".slide-fade-enter-active {\n  transition: all .3s ease;\n}\n.slide-fade-leave-active {\n  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);\n}\n.slide-fade-enter, .slide-fade-leave-to\n/* .slide-fade-leave-active below version 2.1.8 */ {\n  transform: translateX(10px);\n  opacity: 0;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".slide-fade-enter-active {\n  transition: all .3s ease;\n}\n.slide-fade-leave-active {\n  transition: all .8s cubic-bezier(1.0, 0.5, 0.8, 1.0);\n}\n.slide-fade-enter, .slide-fade-leave-to\r\n/* .slide-fade-leave-active below version 2.1.8 */ {\n  transform: translateX(10px);\n  opacity: 0;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -9471,7 +9470,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".vm--container{\n  z-index: 1100 !important;\n};\n.vm--overlay { background-color: rgba(0, 0, 0, 0) !important;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".vm--container{\n  z-index: 1100 !important;\n};\n.vm--overlay { background-color: rgba(0, 0, 0, 0) !important;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -9495,7 +9494,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".lds-roller[data-v-6f2defbe] {\n  display: inline-block;\n  position: relative;\n  width: 80px;\n  height: 80px;\n}\n.lds-roller div[data-v-6f2defbe] {\n  -webkit-animation: lds-roller-data-v-6f2defbe 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;\n          animation: lds-roller-data-v-6f2defbe 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;\n  transform-origin: 40px 40px;\n}\n.lds-roller div[data-v-6f2defbe]:after {\n  content: \" \";\n  display: block;\n  position: absolute;\n  width: 7px;\n  height: 7px;\n  border-radius: 50%;\n  background: #0012af;\n  margin: -4px 0 0 -4px;\n}\n.lds-roller div[data-v-6f2defbe]:nth-child(1) {\n  -webkit-animation-delay: -0.036s;\n          animation-delay: -0.036s;\n}\n.lds-roller div[data-v-6f2defbe]:nth-child(1):after {\n  top: 63px;\n  left: 63px;\n}\n.lds-roller div[data-v-6f2defbe]:nth-child(2) {\n  -webkit-animation-delay: -0.072s;\n          animation-delay: -0.072s;\n}\n.lds-roller div[data-v-6f2defbe]:nth-child(2):after {\n  top: 68px;\n  left: 56px;\n}\n.lds-roller div[data-v-6f2defbe]:nth-child(3) {\n  -webkit-animation-delay: -0.108s;\n          animation-delay: -0.108s;\n}\n.lds-roller div[data-v-6f2defbe]:nth-child(3):after {\n  top: 71px;\n  left: 48px;\n}\n.lds-roller div[data-v-6f2defbe]:nth-child(4) {\n  -webkit-animation-delay: -0.144s;\n          animation-delay: -0.144s;\n}\n.lds-roller div[data-v-6f2defbe]:nth-child(4):after {\n  top: 72px;\n  left: 40px;\n}\n.lds-roller div[data-v-6f2defbe]:nth-child(5) {\n  -webkit-animation-delay: -0.18s;\n          animation-delay: -0.18s;\n}\n.lds-roller div[data-v-6f2defbe]:nth-child(5):after {\n  top: 71px;\n  left: 32px;\n}\n.lds-roller div[data-v-6f2defbe]:nth-child(6) {\n  -webkit-animation-delay: -0.216s;\n          animation-delay: -0.216s;\n}\n.lds-roller div[data-v-6f2defbe]:nth-child(6):after {\n  top: 68px;\n  left: 24px;\n}\n.lds-roller div[data-v-6f2defbe]:nth-child(7) {\n  -webkit-animation-delay: -0.252s;\n          animation-delay: -0.252s;\n}\n.lds-roller div[data-v-6f2defbe]:nth-child(7):after {\n  top: 63px;\n  left: 17px;\n}\n.lds-roller div[data-v-6f2defbe]:nth-child(8) {\n  -webkit-animation-delay: -0.288s;\n          animation-delay: -0.288s;\n}\n.lds-roller div[data-v-6f2defbe]:nth-child(8):after {\n  top: 56px;\n  left: 12px;\n}\n@-webkit-keyframes lds-roller-data-v-6f2defbe {\n0% {\n    transform: rotate(0deg);\n}\n100% {\n    transform: rotate(360deg);\n}\n}\n@keyframes lds-roller-data-v-6f2defbe {\n0% {\n    transform: rotate(0deg);\n}\n100% {\n    transform: rotate(360deg);\n}\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".lds-roller[data-v-6f2defbe] {\n  display: inline-block;\n  position: relative;\n  width: 80px;\n  height: 80px;\n}\n.lds-roller div[data-v-6f2defbe] {\n  -webkit-animation: lds-roller-data-v-6f2defbe 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;\n          animation: lds-roller-data-v-6f2defbe 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;\n  transform-origin: 40px 40px;\n}\n.lds-roller div[data-v-6f2defbe]:after {\n  content: \" \";\n  display: block;\n  position: absolute;\n  width: 7px;\n  height: 7px;\n  border-radius: 50%;\n  background: #0012af;\n  margin: -4px 0 0 -4px;\n}\n.lds-roller div[data-v-6f2defbe]:nth-child(1) {\n  -webkit-animation-delay: -0.036s;\n          animation-delay: -0.036s;\n}\n.lds-roller div[data-v-6f2defbe]:nth-child(1):after {\n  top: 63px;\n  left: 63px;\n}\n.lds-roller div[data-v-6f2defbe]:nth-child(2) {\n  -webkit-animation-delay: -0.072s;\n          animation-delay: -0.072s;\n}\n.lds-roller div[data-v-6f2defbe]:nth-child(2):after {\n  top: 68px;\n  left: 56px;\n}\n.lds-roller div[data-v-6f2defbe]:nth-child(3) {\n  -webkit-animation-delay: -0.108s;\n          animation-delay: -0.108s;\n}\n.lds-roller div[data-v-6f2defbe]:nth-child(3):after {\n  top: 71px;\n  left: 48px;\n}\n.lds-roller div[data-v-6f2defbe]:nth-child(4) {\n  -webkit-animation-delay: -0.144s;\n          animation-delay: -0.144s;\n}\n.lds-roller div[data-v-6f2defbe]:nth-child(4):after {\n  top: 72px;\n  left: 40px;\n}\n.lds-roller div[data-v-6f2defbe]:nth-child(5) {\n  -webkit-animation-delay: -0.18s;\n          animation-delay: -0.18s;\n}\n.lds-roller div[data-v-6f2defbe]:nth-child(5):after {\n  top: 71px;\n  left: 32px;\n}\n.lds-roller div[data-v-6f2defbe]:nth-child(6) {\n  -webkit-animation-delay: -0.216s;\n          animation-delay: -0.216s;\n}\n.lds-roller div[data-v-6f2defbe]:nth-child(6):after {\n  top: 68px;\n  left: 24px;\n}\n.lds-roller div[data-v-6f2defbe]:nth-child(7) {\n  -webkit-animation-delay: -0.252s;\n          animation-delay: -0.252s;\n}\n.lds-roller div[data-v-6f2defbe]:nth-child(7):after {\n  top: 63px;\n  left: 17px;\n}\n.lds-roller div[data-v-6f2defbe]:nth-child(8) {\n  -webkit-animation-delay: -0.288s;\n          animation-delay: -0.288s;\n}\n.lds-roller div[data-v-6f2defbe]:nth-child(8):after {\n  top: 56px;\n  left: 12px;\n}\n@-webkit-keyframes lds-roller-data-v-6f2defbe {\n0% {\n    transform: rotate(0deg);\n}\n100% {\n    transform: rotate(360deg);\n}\n}\n@keyframes lds-roller-data-v-6f2defbe {\n0% {\n    transform: rotate(0deg);\n}\n100% {\n    transform: rotate(360deg);\n}\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -9543,7 +9542,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, ".form-group {\n  width: 50%;\n  padding: 1rem;\n}\n.form-group-label {\n  display: block;\n  --text-opacity: 1;\n  color: #4a5568;\n  color: rgba(74, 85, 104, var(--text-opacity));\n  font-size: 0.875rem;\n  font-weight: 700;\n  margin-bottom: 0.5rem;\n}\n.form-group-input {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  appearance: none;\n  border-width: 1px;\n  border-radius: 0.25rem;\n  width: 100%;\n  padding-top: 0.5rem;\n  padding-bottom: 0.5rem;\n  padding-left: 0.75rem;\n  padding-right: 0.75rem;\n  --text-opacity: 1;\n  color: #4a5568;\n  color: rgba(74, 85, 104, var(--text-opacity));\n  line-height: 1.25;\n}\n\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, ".form-group {\n  width: 50%;\n  padding: 1rem;\n}\n.form-group-label {\n  display: block;\n  --text-opacity: 1;\n  color: #4a5568;\n  color: rgba(74, 85, 104, var(--text-opacity));\n  font-size: 0.875rem;\n  font-weight: 700;\n  margin-bottom: 0.5rem;\n}\n.form-group-input {\n  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);\n  -webkit-appearance: none;\n  -moz-appearance: none;\n  appearance: none;\n  border-width: 1px;\n  border-radius: 0.25rem;\n  width: 100%;\n  padding-top: 0.5rem;\n  padding-bottom: 0.5rem;\n  padding-left: 0.75rem;\n  padding-right: 0.75rem;\n  --text-opacity: 1;\n  color: #4a5568;\n  color: rgba(74, 85, 104, var(--text-opacity));\n  line-height: 1.25;\n}\r\n\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -65668,7 +65667,7 @@ var render = function() {
                 [
                   _c(
                     "router-link",
-                    { attrs: { to: { path: "film/" + film.id } } },
+                    { attrs: { to: { path: "/film/" + film.id } } },
                     [
                       _c("movie-card", {
                         attrs: {
@@ -66815,7 +66814,11 @@ var render = function() {
       _c("div", { staticClass: " bg-gray-400 p-3 rounded-md block" }, [
         _c("div", { staticClass: "flex justify-between mx-3" }, [
           _c("div", { staticClass: "text-xl text-white font-semibold pt-2" }, [
-            _vm._v("\n                    Username\n                ")
+            _vm._v(
+              "\r\n                    " +
+                _vm._s(_vm.$userId.username) +
+                "\r\n                "
+            )
           ]),
           _vm._v(" "),
           _c(
@@ -66973,9 +66976,9 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n                                    " +
+                                "\r\n                                    " +
                                   _vm._s(role.name) +
-                                  "\n                                "
+                                  "\r\n                                "
                               )
                             ]
                           ),
@@ -66988,9 +66991,9 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n                                    " +
+                                "\r\n                                    " +
                                   _vm._s(role.permissions.length) +
-                                  "\n                                "
+                                  "\r\n                                "
                               )
                             ]
                           ),
@@ -67076,7 +67079,7 @@ var staticRenderFns = [
             },
             [
               _vm._v(
-                "\n                                    Name\n                                "
+                "\r\n                                    Name\r\n                                "
               )
             ]
           ),
@@ -67090,7 +67093,7 @@ var staticRenderFns = [
             },
             [
               _vm._v(
-                "\n                                    Number of permissions\n                                "
+                "\r\n                                    Number of permissions\r\n                                "
               )
             ]
           ),
@@ -67104,7 +67107,7 @@ var staticRenderFns = [
             },
             [
               _vm._v(
-                "\n                                    Edit permission\n                                "
+                "\r\n                                    Edit permission\r\n                                "
               )
             ]
           )
@@ -67249,9 +67252,9 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n                                    " +
+                                "\r\n                                    " +
                                   _vm._s(user.username) +
-                                  "\n                                "
+                                  "\r\n                                "
                               )
                             ]
                           ),
@@ -67264,9 +67267,9 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n                                    " +
+                                "\r\n                                    " +
                                   _vm._s(user.email) +
-                                  "\n                                "
+                                  "\r\n                                "
                               )
                             ]
                           ),
@@ -67279,9 +67282,9 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n                                    " +
+                                "\r\n                                    " +
                                   _vm._s(user.firstName) +
-                                  "\n                                "
+                                  "\r\n                                "
                               )
                             ]
                           ),
@@ -67294,9 +67297,9 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n                                    " +
+                                "\r\n                                    " +
                                   _vm._s(user.lastName) +
-                                  "\n                                "
+                                  "\r\n                                "
                               )
                             ]
                           ),
@@ -67309,9 +67312,9 @@ var render = function() {
                             },
                             [
                               _vm._v(
-                                "\n                                    " +
+                                "\r\n                                    " +
                                   _vm._s(user.role.name) +
-                                  "\n                                "
+                                  "\r\n                                "
                               )
                             ]
                           ),
@@ -67397,7 +67400,7 @@ var staticRenderFns = [
             },
             [
               _vm._v(
-                "\n                                    Username\n                                "
+                "\r\n                                    Username\r\n                                "
               )
             ]
           ),
@@ -67411,7 +67414,7 @@ var staticRenderFns = [
             },
             [
               _vm._v(
-                "\n                                    E-mail\n                                "
+                "\r\n                                    E-mail\r\n                                "
               )
             ]
           ),
@@ -67425,7 +67428,7 @@ var staticRenderFns = [
             },
             [
               _vm._v(
-                "\n                                    First Name\n                                "
+                "\r\n                                    First Name\r\n                                "
               )
             ]
           ),
@@ -67439,7 +67442,7 @@ var staticRenderFns = [
             },
             [
               _vm._v(
-                "\n                                    Last Name\n                                "
+                "\r\n                                    Last Name\r\n                                "
               )
             ]
           ),
@@ -67453,7 +67456,7 @@ var staticRenderFns = [
             },
             [
               _vm._v(
-                "\n                                    Role\n                                "
+                "\r\n                                    Role\r\n                                "
               )
             ]
           ),
@@ -68565,7 +68568,7 @@ var render = function() {
                 "router-link",
                 { attrs: { to: { path: "film/" + movie.id } } },
                 [
-                  _c("div", [
+                  _c("div", { staticClass: "justify-center" }, [
                     _c("img", {
                       staticClass:
                         "h-80 object-contain  rounded-md hover:border-blue-300",
@@ -85514,7 +85517,7 @@ Vue.compile = compileToFunctions;
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"_args":[["axios@0.21.4","C:\\\\xampp\\\\htdocs\\\\diplomski2"]],"_development":true,"_from":"axios@0.21.4","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"axios@0.21.4","name":"axios","escapedName":"axios","rawSpec":"0.21.4","saveSpec":null,"fetchSpec":"0.21.4"},"_requiredBy":["#DEV:/"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_spec":"0.21.4","_where":"C:\\\\xampp\\\\htdocs\\\\diplomski2","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
+module.exports = JSON.parse('{"_args":[["axios@0.21.4","C:\\\\xampp\\\\htdocs\\\\diplomski"]],"_development":true,"_from":"axios@0.21.4","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"axios@0.21.4","name":"axios","escapedName":"axios","rawSpec":"0.21.4","saveSpec":null,"fetchSpec":"0.21.4"},"_requiredBy":["#DEV:/"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_spec":"0.21.4","_where":"C:\\\\xampp\\\\htdocs\\\\diplomski","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
 
 /***/ })
 

@@ -82,7 +82,7 @@ export default {
         },
         async getPopularMovies() {
 
-            await axios.get("https://imdb-api.com/en/API/MostPopularMovies/pk_3i6onjtnv0nkvost7").then(response => {
+            await axios.get("https://imdb-api.com/en/API/MostPopularMovies/k_aqki26bs").then(response => {
                     this.popularMovies = response.data.items.splice(0, 5);
 
             })
@@ -99,7 +99,7 @@ export default {
                 console.log(res.data)
             })
             this.topRatedIds.forEach( id=>{
-                axios.get('https://imdb-api.com/en/API/Title/pk_3i6onjtnv0nkvost7/'+id).then(res=>{
+                axios.get('https://imdb-api.com/en/API/Title/k_aqki26bs/'+id).then(res=>{
                     this.topRatedMovies.push(res.data);
                 })
             }

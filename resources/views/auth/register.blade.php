@@ -10,9 +10,9 @@
 
         </a>
     </div>
-    <div class="flex py-10 ">
+    <div class="flex py-10">
         {{-- <div class=""> --}}
-            <div class="mx-auto px-10 bg-white rounded-md w-3/6">
+            <div class="mx-auto m-auto px-10 bg-white rounded-md w-4/6 ">
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf

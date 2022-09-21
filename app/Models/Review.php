@@ -7,7 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Review extends Model
 {
-    protected $guarded=[];
+    protected $fillable=['idUser',
+                        'idFilm',
+                        'reviewText',
+                        'filmTitle'];
 
     public function like(){
         return $this->hasOne(Like::class);

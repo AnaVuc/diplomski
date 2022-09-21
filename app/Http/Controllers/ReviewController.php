@@ -7,8 +7,6 @@ use App\Models\Rating;
 use App\Models\Review;
 use App\Models\Watch;
 use DateTime;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Date;
 
 class ReviewController extends Controller
 {
@@ -24,6 +22,7 @@ class ReviewController extends Controller
             'idUser'=>request()->idUser,
             'filmTitle'=>request()->filmTitle
         ]);
+        
 
         $watch=Watch::create([
             'idUser'=>request()->idUser,
@@ -71,10 +70,8 @@ class ReviewController extends Controller
             'reviewText'=>'required',
             'filmTitle'=>'required',
         ]);
-        // dd(request());
 
-        $r=Review::where('idFilm',$idFilm)->where('idUser',$idUser)->first();
-        $r->update($attributes);
+        $r=Review::where('idFilm',$idFilm)->where('idUser',$idUser)->update($attributes);
         $r=$r->fresh();
 
         $film_controller=new FilmController;
@@ -120,9 +117,9 @@ class ReviewController extends Controller
     }
 
     public function delete(){
-        // dd(request()->idUser,request()->idFilm);
-        $r= Review::where('idUser',request()->idUser)->where('idFilm',request()->idFilm)->first();
-        //radi on cascade delete pa brise review_id u watched i liked
+        $r= Review::where('idUser',request()->idUser)
+                    ->where('idFilm',request()->idFilm)
+                    ->first();
         $r->delete();
 
     }

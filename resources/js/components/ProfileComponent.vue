@@ -3,13 +3,8 @@
     <div class="py-10  ml-28 w-4/5">
         <div class=" bg-gray-400 p-3 rounded-md block">
             <div class="flex justify-between mx-3">
-                <!-- <div class="avatar">
-                    <div class=" w-16 h-16 mask mask-squircle border-gray-300">
-                        <img src="http://daisyui.com/tailwind-css-component-profile-1@94w.png">
-                    </div>
-                </div>  -->
                 <div class="text-xl text-white font-semibold pt-2">
-                    Username
+                    {{$userId.username}}
                 </div>
                 <button class="btn btn-md ml-5 hover:bg-blue-300" @click="openModal()">Edit profile</button>
             </div>
@@ -68,7 +63,6 @@ export default{
         }
     }
 }
-
 </script>
 <style >
 .credit-application-container {
